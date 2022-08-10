@@ -1,0 +1,40 @@
+{{ template "layout" . }}
+{{ define "main" }}
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">{{ .title }}</h1>
+</div>
+
+<main>
+	<form action="/add" method="post">
+		<div class="mb-3 row">
+		    <label for="task" class="col-sm-2 col-form-label">Task</label>
+		    <div class="col-sm-10">
+		      	<input placeholder="Input task..." type="text" name="task" class="form-control" id="task">
+		    </div>
+	  	</div>
+
+	  	<div class="mb-3 row">
+		    <label for="asignee" class="col-sm-2 col-form-label">Asignee</label>
+		    <div class="col-sm-10">
+		      	<input placeholder="Input asignee" type="text" name="assignee" class="form-control" id="asignee">
+		    </div>
+	  	</div>
+
+	  	<div class="mb-3 row">
+		    <label for="deadline" class="col-sm-2 col-form-label">Deadline</label>
+		    <div class="col-sm-10">
+		      	<input type="date" name="deadline" class="form-control" id="deadline">
+		    </div>
+	  	</div>
+
+	  	<div class="mb-3 row">
+		    <label for="deadline" class="col-sm-2 col-form-label"></label>
+		    <div class="col-sm-10">
+		    	<button class="btn btn-primary">Submit</button>
+		    	<a href="/" type="reset" class="btn btn-secondary">Cancel</a>
+		    </div>
+	  	</div>
+	</form>
+</main>
+
+{{ end }}

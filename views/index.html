@@ -1,0 +1,52 @@
+{{ template "layout" . }}
+{{ define "main" }}
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">Task List</h1>
+    <a href="/create-task" class="btn btn-primary">+ Add New Task</a>
+</div>
+
+<main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      {{range $key, $value := .Data}}
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm 
+        {{ if $value.Status }}
+        {{else}}
+        border-success
+        {{end}}">
+          <div class="card-header py-3 {{ if $value.Status }}
+        {{else}}
+        text-bg-success
+        {{end}}">
+            <h4 class="my-0 fw-normal">Task #{{ $key }}</h4>
+          </div>
+          <div class="card-body">
+          	<div style="height: 100px">
+            	<h5 class="card-title pricing-card-title">{{ $value.Task }}</h5>
+            </div>
+            <hr/>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Assignee : {{ $value.Assignee }}</li>
+              <li>Deadline : {{ $value.Deadline }}</li>
+            </ul>
+            <div class="row">
+	            <div class="col-md-6">
+	            	{{ if $value.Status }}
+		            <a href="/mark-done?id={{ $value.Id }}" class="w-100 btn btn-outline-success">Mark as done</a>
+	            	{{ else }}
+		            <button type="button" disabled class="w-100 btn btn-success">Done</button>
+	            	{{ end }}
+	            </div>
+	            <div class="col-md-6">
+		            <a href="/edit-task?id={{ $value.Id }}" type="button" class="w-100 btn btn-outline-primary">Edit</a>
+	            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{end}}
+    </div>
+  </main>
+
+
+{{ end }}
